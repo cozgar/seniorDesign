@@ -96,13 +96,14 @@ body {
 /*-- AgileITS --*/
 h1 {
 	text-align:center;
-	font-size:45px;
+	font-size:50px;
 	color:#fff;
-	padding:50px 0;
+	padding:30px 0;
 	text-transform:uppercase;
 	font-weight: 300;
 	font-family: 'Nunito', sans-serif;
 }
+
 .log .content1 h2 {
 	font-size:40px;
 	padding: 30px 0 0;
@@ -269,6 +270,15 @@ li.i {
 	font-weight: 300;
 	font-family: 'Muli', sans-serif;
 }
+h4 {
+	text-align:center;
+	font-size:30px;
+	color:#fff;
+	padding:20px 0;
+	text-transform:uppercase;
+	font-weight: 300;
+	font-family: 'Nunito', sans-serif;
+}
 .register {
 	padding:10px;
 	background-color:#0a6ad0;
@@ -309,6 +319,16 @@ li.i {
 	color:#c0392b;
 	transition: all 0.5s ease-in-out;
 }
+/*-- custom font for iPear title --*/
+@font-face {
+	font-family: Lovelo-Line-Bold;
+	src: url('../fonts/Lovelo-Line-Bold.otf');
+	font-weight: bold;
+}
+h1.header {
+	font-family: Lovelo-Line-Bold;
+}
+
 
 /*-- responsive-mediaquries --*/
 @media (max-width: 1680px){
@@ -338,6 +358,9 @@ li.i {
 @media (max-width: 1080px){
 	h1 {
 	font-size:40px;	
+	}
+	h4 {
+	font-size:30px;
 	}
 	.log .content1 h2 , .log .content2 h2 {
     font-size: 35px;
@@ -403,6 +426,9 @@ li.i {
 	h1 {
     font-size: 35px;
 	}
+	h4 {
+	font-size: 20px;
+	}
 	.log .content1 h2, .log .content2 h2 {
     font-size: 27px;
 	}
@@ -442,6 +468,9 @@ li.i {
 	h1 {
 	padding:35px 0;	
 	}
+	h4 {
+	padding:20px 0;
+	}
 }
 	
 @media (max-width: 667px){
@@ -460,6 +489,9 @@ li.i {
 h1 {
     font-size: 30px;
 }
+h4 {
+	font-size: 20px;
+}
 .sign-in, .register {
     width: 82%;
 }
@@ -468,6 +500,9 @@ h1 {
 @media (max-width: 568px){
 	h1 {
     padding: 25px 0;
+	}
+	h4 {
+	padding: 15px 0;
 	}
 	.log .content1 h2, .log .content2 h2 {
     font-size: 30px;
@@ -497,6 +532,9 @@ h3 {
 	h1 {
     font-size: 28px;
 }
+	h4 {
+	font-size: 18px;
+}
 .log .content1 h2, .log .content2 h2 {
     font-size: 27px;
 }
@@ -518,6 +556,9 @@ h3 {
 	h1 {
     font-size: 26px;
 }
+	h4 {
+	font-size: 18px;
+}
 .log .content1 h2, .log .content2 h2 {
     font-size: 25px;
 }
@@ -527,6 +568,9 @@ h3 {
 	h1 {
     font-size: 24px;
 }
+	h4 {
+	font-size: 18px;
+	}
 .content1 input[type="text"] {
 	font-size: 14px;
 }

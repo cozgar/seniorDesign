@@ -27,6 +27,28 @@ nav.vertical ul li{	display:block;}/* vertical menu */
 nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
 img{max-width:100%;}
 /*end reset*/
+
+/*-- custom header font --*/
+@font-face {
+	font-family: Lovelo-Line-Bold;
+	src: url('../fonts/Lovelo-Line-Bold.otf');
+	font-weight: bold;
+}
+
+h1.header {
+	font-family: Lovelo-Line-Bold;
+}
+
+h1 {
+	text-align:center;
+	font-size:50px;
+	color:#fff;
+	padding:30px 0;
+	text-transform:uppercase;
+	font-weight: 300;
+	font-family: 'Nunito', sans-serif;
+}
+
 body{
 	font-family: 'Ubuntu', sans-serif;
 	    background: url('../images/1.jpg') no-repeat 0px 0px;
@@ -35,12 +57,7 @@ body{
 }
 .header {
     text-align: center;
-    margin-top: 4em;
-}
-.header h1 {
-    font-size: 3.5em;
-    color: #fff;
-    font-weight: 400;
+    !margin-top: 4em;
 }
 .main-section {
     width: 40%;
