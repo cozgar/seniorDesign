@@ -121,7 +121,7 @@ body{
     text-transform: capitalize;
     border: none;
     outline: none;
-    background:#00132e;
+    background:#0a6ad0;
     color: #fff;
     cursor: pointer;
 	width: 35%;
@@ -134,7 +134,8 @@ body{
     color: #777;
 }
 .login-form input[type="submit"]:hover {
-    background: #000;
+    background-color:#1259a5;
+	color:#fff;
 	 transition: 0.5s all;
 	-webkit-transition: 0.5s all;
 	-moz-transition: 0.5s all;
