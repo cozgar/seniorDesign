@@ -9,8 +9,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
     <head>
-    <title>iPear Account Creation</title>
-            <?php include 'view/header.php'; ?>
+        <title>iPear Account Creation</title>
+        <?php include 'view/header.php'; ?>
     </head>
     <body>
         <div class="header w3ls">
@@ -71,6 +71,5 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
             <?php include 'view/footer.php'; ?>
         </div>
-
     </body>
 </html>
