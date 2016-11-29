@@ -126,7 +126,7 @@ h1 {
 }
 .content1 {
     text-align: center;
-    background: rgba(55, 64, 90, 0.45);
+    background-color:rgba(33, 54, 97, 0.59);
     border-radius: 0px;
 }
 .content1 input[type="text"] {
