@@ -1,4 +1,0 @@
-# seniorDesign
-
-words
-more words
