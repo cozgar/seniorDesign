@@ -1,0 +1,22 @@
+from django.conf.urls import url
+from django.contrib import admin
+from django.contrib.auth import views as auth_views
+#from django.contrib.auth import views
+
+from ipear.views import (login_view, register_view, logout_view, home)
+#from ipear.forms import LoginForm
+
+urlpatterns = [
+    url(r'^register/$', register_view, name='register'),
+    url(r'^thankyou/$', logout_view, name='thankyou'),
+    url(r'^login/$', login_view, name='login'),    
+    url(r'^logout/$', logout_view, name='logout'),
+    url(r'^', home, name='home'),
+
+
+#    url(r'^login/$', auth_views.login, {'template_name': 'login.html' }, name='login'),
+#    url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
+
+#    url(r'^login/$', views.login, {'template_name': 'login.html', 'authentication_form': LoginForm}, name='login'),
+#    url(r'^logout/$', views.logout, {'next_page': '/login'}),
+]

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %} user.username {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="jumbotron">
+		<table>
+			<tr><td><h1>Account Information</h1></td></tr>
+
+			<tr>
+			<td>
+			<p>Username: {{user.username}}</p>
+			<p>Email Address: {{user.email}}</p>	
+			</td>			
+			</tr>
+
+			<tr><td><h1>About</h1></td></tr>
+			<tr><td>
+			<p>First Name: Mike</p>
+			<p>Last Name: Winston</p>
+	
+			<p>Phone Number: (768) 657-7890</p>
+			<p>Address: 617 Liberty Place, Philadelphia, PA, 178290</p>
+			</td></tr>
+
+			<tr><td><h1>Medical Information</h1></td></tr>
+			<tr><td>
+			<p>Allergies: N/A</p>
+			<p>Pre-Existing Conditions: N/A</p>
+			<p>Medications: N/A</p>
+
+
+			<tr><td><h1>Law Enforcement Information</h1></td></tr>
+			<tr><td>
+			<p>Pets: 2 Dogs</p>
+			<p>Fire: 1 Rifle</p>
+			
+			</td></tr>
+
+			
+			<tr><td><h1>Fire Emergency Information</h1></td></tr>
+			<tr><td>
+			<p>Family Members: 2</p>
+			<p>Family Details: Wife and child</p>
+
+			</td></tr>
+
+			<tr></tr>
+			<tr></tr>
+			<tr><td><td> <input value="Export as CSV 2" class='btn btn-success btn-sm' type="button" onclick=""></td><td><input value="Export as HL7" class='btn btn-success btn-sm' type="button" onclick=""></td></td></tr>
+
+		</table>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

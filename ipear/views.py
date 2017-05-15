@@ -69,9 +69,16 @@ def staff_view(request):
 def home(request):
 	return render(request, "home.html")
 
+def profile_view(request):
+	return render(request, "profile.html")
+
+def settings_view(request):
+	return render(request, "settings.html")
+
+'''
 def dispatch_overview(request):
 	return render(request, "success.html")
-
+'''
 def edit_view(request, username):
 	return render(request, "edit_profile.html")
 
@@ -103,3 +110,4 @@ def edit_user(request, username):
 		return render(request, "edit_profile.html", {"noodle": pk, "noodle_form": user_form, "formset": formset,})
 	else:
 		raise PermissionDenied
+

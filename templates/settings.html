@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="jumbotron">
+	<body>
+		<form class="form-horizontal">
+  <fieldset>
+    <legend>iPear Settings</legend>
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-2 control-label">Recovery Email:</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPhone" class="col-lg-2 control-label">Secondary Phone:</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputPhone" placeholder="Phone Number">
+        <div class="checkbox">
+          <label><input type="checkbox"> Microphone</label></br>
+          <label><input type="checkbox"> Local Storage</label>
+        </div>
+      </div>
+    </div>    
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Location:</label>
+      <div class="col-lg-10">
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+            Allow iPear to track your physical location at all times (recommended)
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+            Ask when iPear tries to track your physical location
+          </label>
+        </div>
+	<div class="radio">
+	  <label>
+	    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+	    Do not allow iPear to track your physical location (not recommended)
+	  </label>
+	</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+	</body>
+        </div>
+    </div>
+</div>
+{% endblock %}
