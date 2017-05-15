@@ -40,7 +40,7 @@ class UserRegisterForm(forms.ModelForm):
 		'username',
 		'password',
 		'email',
-		'email2'
+		'email2',
 		]
 
 	def clean_email2(self):

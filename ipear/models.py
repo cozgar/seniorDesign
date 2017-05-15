@@ -5,9 +5,9 @@ from django.dispatch import receiver
 
 # Create your models here.
 
-'''
+
 class Profile(models.Model):
-	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	user = models.OneToOneField(User, related_name='user', on_delete=models.CASCADE)
 
 	first_Name = models.CharField(max_length=40)
 	last_Name = models.CharField(max_length=40)
@@ -26,16 +26,24 @@ class Profile(models.Model):
 	firearms = models.TextField()
 	
 	isDispatcher = models.BooleanField(default=False)
-
+'''
 @receiver(post_save, sender=User)
+
 def create_user_profile(sender, instance, created, **kwargs):
 	if created:
 		Profile.objects.create(user=instance)
-
+'''
+def create_user_profile(sender, **kwargs):
+	user = kwargs["instance"]
+	if kwargs["created"]:
+		user_profile = Profile(user=user)
+		user_profile.save()
+post_save.connect(create_user_profile, sender=User)
+'''
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
 	instance.profile.save()
-
+'''
 def __str__(self):
 	return self.user
 
@@ -52,4 +60,3 @@ class DispatcherInfo(models.Model):
 def __str__(self):
 	return self.username
 
-'''

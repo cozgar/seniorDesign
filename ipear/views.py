@@ -4,10 +4,13 @@ from django.contrib.auth import (
 	login,
 	logout,
 	)
-from django.shortcuts import render, redirect
-#from django.contrib.admin.views.decorators import user_passes_test
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
+from django.forms.models import inlineformset_factory
+from django.core.exceptions import PermissionDenied
+from .models import Profile
 from .forms import UserLoginForm, UserRegisterForm
 
 def login_view(request):
@@ -68,3 +71,35 @@ def home(request):
 
 def dispatch_overview(request):
 	return render(request, "success.html")
+
+def edit_view(request, username):
+	return render(request, "edit_profile.html")
+
+def edit_user(request, username):
+	# querying the User object with pk from url
+	user = User.objects.get(username=username)
+ 
+	# prepopulate UserProfileForm with retrieved user values from above.
+	user_form = UserRegisterForm(instance=user)
+ 
+	# The sorcery begins from here, see explanation below
+	ProfileInlineFormset = inlineformset_factory(User, Profile, fields=('first_Name', 'last_Name', 'phone_Number', 'pets'))
+	formset = ProfileInlineFormset(instance=user)
+ 
+	if request.user.is_authenticated() and request.user.id == user.id:
+		if request.method == "POST":
+			user_form = UserRegisterForm(request.POST, request.FILES, instance=user)
+			formset = ProfileInlineFormset(request.POST, request.FILES, instance=user)
+ 
+		if user_form.is_valid():
+			created_user = user_form.save(commit=False)
+			formset = ProfileInlineFormset(request.POST, request.FILES, instance=created_user)
+ 
+		if formset.is_valid():
+			created_user.save()
+			formset.save()
+			return HttpResponseRedirect('/')
+ 
+		return render(request, "edit_profile.html", {"noodle": pk, "noodle_form": user_form, "formset": formset,})
+	else:
+		raise PermissionDenied
