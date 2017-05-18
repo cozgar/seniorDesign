@@ -82,6 +82,10 @@ def dispatch_overview(request):
 def edit_view(request, username):
 	return render(request, "edit_profile.html")
 
+def edit_user_profile_view(request):
+	return render(request, "edit_user_profile.html")
+
+'''
 def edit_user(request, username):
 	# querying the User object with pk from url
 	user = User.objects.get(username=username)
@@ -110,4 +114,4 @@ def edit_user(request, username):
 		return render(request, "edit_profile.html", {"noodle": pk, "noodle_form": user_form, "formset": formset,})
 	else:
 		raise PermissionDenied
-
+'''
