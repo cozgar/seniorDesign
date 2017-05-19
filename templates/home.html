@@ -42,6 +42,10 @@
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
+		  
+		  var lat = position.coords.latitude;
+		  var long = position.coords.longitude;
+		  document.querySelector('.results').innerHTML = lat +', '+ long;
 
 			  var marker = new google.maps.Marker({
 				position: pos,
@@ -77,8 +81,9 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYFtU43cZw-VnMYs7k8oXqTwUBRqQMpYs&callback=initMap">
     </script>
-    <P> <h3>Location: Lat:40.1117869 Lon:-75.1673672</h3></p>
-    <P> <h3>Street Address: 3141 Chestnut St, Philadelphia, PA 19104</h3></p>
+  <p> <h3>Location Coordinates: <span class ="results"></span></h3></p>    
+	<p> <h3>Street Address: 3141 Chestnut St, Philadelphia, PA 19104</h3></p>
+
   </body>
   </br>
   <div>
