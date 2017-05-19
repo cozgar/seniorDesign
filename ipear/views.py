@@ -67,13 +67,16 @@ def staff_view(request):
 
 # Create your views here.
 def home(request):
-	return render(request, "home.html")
+	return render(request, "dis_home.html")
 
 def profile_view(request):
 	return render(request, "profile.html")
 
 def settings_view(request):
 	return render(request, "settings.html")
+	
+def dispatch_settings_view(request):
+	return render(request, "dispatcher_settings.html")
 
 '''
 def dispatch_overview(request):
