@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="jumbotron">
+<style>
+       #map {
+        height: 300px;
+        width: 80%;
+       }
+    </style>
+            <body>
+    <div id="map"></div>
+    <script>
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
+      var map, infoWindow;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 39.00, lng: -75.00},
+          zoom: 12
+        });
+        infoWindow = new google.maps.InfoWindow;
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+			  var marker = new google.maps.Marker({
+				position: pos,
+				map: map,
+				title: 'Uluru (Ayers Rock)'
+				
+				});
+				map.setCenter(pos);
+				
+				marker.addListener('click', function() {
+				infoWindow.setPosition(pos);
+				infoWindow.setContent('Location found! '+'Latitude: '+ (position.coords.latitude)+' ' +'Longitude: '+(position.coords.longitude));
+				infoWindow.open(map);
+			});
+			
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYFtU43cZw-VnMYs7k8oXqTwUBRqQMpYs&callback=initMap">
+    </script>
+  </body>
+        </div>
+		
+	<div class="container">
+	<div class="row">
+		<h2>Mike's Profile</h2>
+        
+        
+       <div class="col-md-7 ">
+
+<div class="panel panel-default">
+  <div class="panel-heading">  <h4 >User Profile</h4></div>
+   <div class="panel-body">
+       
+    <div class="box box-info">
+        
+            <div class="box-body">
+                     <div class="col-sm-6">
+                     <div  align="center"> <img alt="User Pic" src="data:image/jpeg;base64,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" id="profile-image1" class="img-circle img-responsive"> 
+                <br>
+                Upload New Photo<input id="profile-image-upload"  type="file">
+				
+				
+                <!--Upload Image Js And Css-->
+                     </div>
+
+              
+              <br>
+    
+              <!-- /input-group -->
+            </div>
+            <div class="col-sm-6">
+            <h4 style="color:#00b1b1;">Mike Wednesdayfun </h4></span>
+              <span><p>Last Access:  May 22, 2017</p></span>            
+            </div>
+            <div class="clearfix"></div>
+            <hr style="margin:5px 0 5px 0;">
+    	
+     
+<div class="col-sm-5 col-xs-6 tital " >First Name:</div><div class="col-sm-7 col-xs-6 " ><input id="first-name" name="first-name" type="text" value="Mike" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Last Name:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="Wednesdayfun" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Date Joined:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="16 June 2017" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Date Of Birth:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="August 6, 700" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Place Of Birth:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="Cloud Nine" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Last Call:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="2 Weeks Ago" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Pre-Existing Conditions:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="Lightning, Thunder, Rain, Hail" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Pets:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="Birds" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Home Firearms:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="1 Rifle" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Emergency Contact:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="Sara 202-532-6784" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Allergies:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="Fire" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Phone Number:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="Fire" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Address:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="Fire" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Family Details</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="Wife and child" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Dispatcher Notes</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="N/A" class="input-xlarge"></div>
+
+
+
+
+            <!-- /.box-body -->
+          </div>
+		
+		  
+          <!-- /.box -->
+
+        </div>
+       
+            
+    </div> 
+    </div>
+	<br><br><a href="{% url 'edit_user_mike' %}" style="text-decoration:none;color:#000;background-color:#ddd;border:1px solid #ccc;padding:8px;">Confirm changes</a>  
+</div>  
+    <script>
+              $(function() {
+    $('#profile-image1').on('click', function() {
+        $('#profile-image-upload').click();
+    });
+});       
+              </script> 
+       
+       
+       
+       
+       
+       
+       
+       
+       
+   </div>
+</div>
+
+
+
+    </div>
+</div>
+{% endblock %}

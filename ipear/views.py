@@ -88,6 +88,11 @@ def edit_view(request, username):
 def edit_user_profile_view(request):
 	return render(request, "edit_user_profile.html")
 
+def edit_user_mike(request):
+	return render(request, "edit_user_mike.html")
+
+def edit_user_mike_edit(request):
+	return render(request, "edit_user_mike_edit.html")
 '''
 def edit_user(request, username):
 	# querying the User object with pk from url

@@ -1,28 +1,171 @@
 {% extends 'base.html' %}
 
-{% block title %}Edit{% endblock %}
-
 {% block content %}
 
+<div class="container">
+    <div class="row">
+        <div class="jumbotron">
+<style>
+       #map {
+        height: 300px;
+        width: 80%;
+       }
+    </style>
+            <body>
+    <div id="map"></div>
+    <script>
+      // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
+      var map, infoWindow;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 39.00, lng: -75.00},
+          zoom: 12
+        });
+        infoWindow = new google.maps.InfoWindow;
 
-	
-<!-- Material form is just a materialize thing for django forms -->
-<div class="col s12 m8 offset-m2">
-      <div class="card">
-        <div class="card-content">
-        <h2 class="flow-text">Update your information</h2>
-          <form action="." method="POST" class="padding">
-            {% csrf_token %} {{ noodle_form.as_p }}
-            <div class="divider"></div>
-                {{ formset.as_p }}
-            <button type="submit" class="btn-floating btn-large waves-light waves-effect"><i class="large material-icons">done</i></button>
-            <a href="#" onclick="window.history.back(); return false;" title="Cancel" class="btn-floating waves-effect waves-light red"><i class="material-icons">history</i></a>
- 
-        </form>
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+			  var marker = new google.maps.Marker({
+				position: pos,
+				map: map,
+				title: 'Uluru (Ayers Rock)'
+				
+				});
+				map.setCenter(pos);
+				
+				marker.addListener('click', function() {
+				infoWindow.setPosition(pos);
+				infoWindow.setContent('Location found! '+'Latitude: '+ (position.coords.latitude)+' ' +'Longitude: '+(position.coords.longitude));
+				infoWindow.open(map);
+			});
+			
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYFtU43cZw-VnMYs7k8oXqTwUBRqQMpYs&callback=initMap">
+    </script>
+  </body>
         </div>
+		
+	<div class="container">
+	<div class="row">
+		<h2>{{ user.first_name }}'s Profile</h2>
+        
+        
+       <div class="col-md-7 ">
+
+<div class="panel panel-default">
+  <div class="panel-heading">  <h4 >User Profile</h4></div>
+   <div class="panel-body">
+       
+    <div class="box box-info">
+        
+            <div class="box-body">
+                     <div class="col-sm-6">
+                     <div  align="center"> <img alt="User Pic" src="https://s-media-cache-ak0.pinimg.com/originals/bd/9a/d3/bd9ad3b531a1240ef7b2810c7071c925.jpg" id="profile-image1" class="img-circle img-responsive"> 
+                <br>
+                Upload New Photo<input id="profile-image-upload"  type="file">
+				
+				
+                <!--Upload Image Js And Css-->
+                     </div>
+
+              
+              <br>
+    
+              <!-- /input-group -->
+            </div>
+            <div class="col-sm-6">
+            <h4 style="color:#00b1b1;">Zeus God of the Sky</h4></span>
+              <span><p>Last Access:  May 12, 2017</p></span>            
+            </div>
+            <div class="clearfix"></div>
+            <hr style="margin:5px 0 5px 0;">
+    
+              
+<div class="col-sm-5 col-xs-6 tital " >First Name:</div><div class="col-sm-7 col-xs-6 " ><input id="first-name" name="first-name" type="text" value="Zeus" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Middle Name:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="The" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Last Name:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="Godofthesky" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Date Of Joined:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="16 June 2017" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Date Of Birth:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="August 6, 700" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Place Of Birth:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="Cloud Nine" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Last Call:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="2 Weeks Ago" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Medications:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="Lightning, Thunder, Rain, Hail" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Pets:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="Birds" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Weapons:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="Thunderbolt" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Emergency Contact:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="Sara 202-532-6784" class="input-xlarge"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Allergies:</div><div class="col-sm-7"><input id="first-name" name="first-name" type="text" value="Fire" class="input-xlarge"></div>
+
+
+            <!-- /.box-body -->
+          </div>
+		  
+		  
+          <!-- /.box -->
+
+        </div>
+       
+            
+    </div> 
     </div>
+	<div style="color:#111;" class="btn btn-success" input type="file" class="file"  >Save Profile</div>
+</div>  
+    <script>
+              $(function() {
+    $('#profile-image1').on('click', function() {
+        $('#profile-image-upload').click();
+    });
+});       
+              </script> 
+       
+       
+       
+       
+       
+       
+       
+       
+       
+   </div>
 </div>
 
-	
-{% endblock %}
 
+
+    </div>
+</div>
+{% endblock %}
