@@ -31,10 +31,10 @@
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 39.00, lng: -75.00},
-          zoom: 6
+          zoom: 14
         });
         infoWindow = new google.maps.InfoWindow;
-
+		
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
@@ -42,10 +42,6 @@
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
-		  
-		  var lat = position.coords.latitude;
-		  var long = position.coords.longitude;
-		  document.querySelector('.results').innerHTML = lat +', '+ long;
 
 			  var marker = new google.maps.Marker({
 				position: pos,
@@ -64,12 +60,46 @@
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
           });
+		  
+		    var userLng = (position.coords.latitude)
+			var userLat = parseFloat($('#lat').val());
+			document.getElementById("myText").innerHTML = userLat;
+
         } else {
           // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
         }
       }
 
+	  
+	    var geocoder;
+  var map;
+  var address = "425 West 53rd St,New York,NY,";
+  function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var mapOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    codeAddress();
+  }
+
+  function codeAddress() {
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
@@ -81,9 +111,80 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYFtU43cZw-VnMYs7k8oXqTwUBRqQMpYs&callback=initMap">
     </script>
-  <p> <h3>Location Coordinates: <span class ="results"></span></h3></p>    
-	<p> <h3>Street Address: 3141 Chestnut St, Philadelphia, PA 19104</h3></p>
+    <P> <h3>			  
+			The Precise Coordinates are: 
+			<body onload="getLocation()">
+<p id="demo"></p>
+</br><input type="button" value="Get Address" onclick="GetAddress()" />
+			<script>
+				var x = document.getElementById("demo");
+				var txtLatitude;
+				var txtLongitude;
+					function getLocation() {
+						if (navigator.geolocation) {
+						navigator.geolocation.getCurrentPosition(showPosition);
+					} else {
+						x.innerHTML = "Geolocation is not supported by this browser.";
+					}
+					}
+				function showPosition(position) {
+				x.innerHTML = "Latitude: " + position.coords.latitude + 
+					"<br>Longitude: " + position.coords.longitude; 
+            txtLatitude = position.coords.latitude;
+            txtLongitude = position.coords.longitude;
+				}
+				
+			function GetAddress() {
+            var lat = txtLatitude;
+            var lng = txtLongitude;
+            var latlng = new google.maps.LatLng(lat, lng);
+            var geocoder = geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {
+                        x.innerHTML = "Location: " + results[0].formatted_address;
+                    }
+                }
+            });
+        }
+				
+			</script>
 
+			  
+			  </h3></p>
+    <P> <h3>Street Address: 3141 Chestnut St, Philadelphia, PA 19104</h3></p>
+
+<!--	
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    Latitude:
+    <input type="text" id="txtLatitude" value="18.92488028662047" />
+    Longitude:
+    <input type="text" id="txtLongitude" value="72.8232192993164" />
+    <input type="button" value="Get Address" onclick="GetAddress()" />
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+        function GetAddress() {
+            var lat = parseFloat(document.getElementById("txtLatitude").value);
+            var lng = parseFloat(document.getElementById("txtLongitude").value);
+            var latlng = new google.maps.LatLng(lat, lng);
+            var geocoder = geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {
+                        alert("Location: " + results[1].formatted_address);
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+-->
   </body>
   </br>
   <div>
