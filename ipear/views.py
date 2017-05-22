@@ -69,6 +69,9 @@ def staff_view(request):
 def home(request):
 	return render(request, "dis_home.html")
 
+def more_info_view(request):
+	return render(request, "home.html")
+
 def profile_view(request):
 	return render(request, "profile.html")
 

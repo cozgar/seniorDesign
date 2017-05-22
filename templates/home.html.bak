@@ -6,6 +6,13 @@
     <div class="row">
         <div class="jumbotron">
         
+	<div class="form-group">
+  <label class="control-label" for="inputDefault">Dispatcher User Search</label>
+  <input type="text" class="form-control" id="dispatcherSearch">
+  <span class="input-group-btn">
+      <button class="btn btn-default" type="button">Search</button>
+  </span>
+</div>
 
 <style>
        #map {
@@ -23,8 +30,8 @@
       var map, infoWindow;
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 39.95, lng: -75.18},
-          zoom: 11
+          center: {lat: 39.00, lng: -75.00},
+          zoom: 6
         });
         infoWindow = new google.maps.InfoWindow;
 
@@ -35,42 +42,13 @@
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
-		  
-		  var lat = position.coords.latitude;
-		  var long = position.coords.longitude;
-		  document.querySelector('.results').innerHTML = lat +', '+ long;
 
-			  //var marker = new google.maps.Marker({
-				//position: pos,
-				//map: map,
-				//title: 'Uluru (Ayers Rock)'
+			  var marker = new google.maps.Marker({
+				position: pos,
+				map: map,
+				title: 'Caller Location'
 				
-				//});
-		var locations = [
-      ['Jefferson', 39.949826, -75.158423, 4],
-      ['CHOP', 39.948700, -75.193546, 3],
-      ['Penn', 39.949968, -75.193004, 2],
-      ['Caller location', lat, long, 1]
-    ];
-
-
-    var infowindow = new google.maps.InfoWindow();
-
-    var marker, i;
-
-    for (i = 0; i < locations.length; i++) {  
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map
-      });
-
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent(locations[i][0]);
-          infowindow.open(map, marker);
-        }
-      })(marker, i));
-    }
+				});
 				map.setCenter(pos);
 				
 				marker.addListener('click', function() {
@@ -95,55 +73,13 @@
                               'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
       }
-
-  </script>
+    </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYFtU43cZw-VnMYs7k8oXqTwUBRqQMpYs&callback=initMap">
     </script>
-  <p> <h3>Location Coordinates: <span class ="results"></span></h3></p>    
-	
-			
-			<body onload="getLocation()">
-<p id="demo"></p>
-</br><input type="button" value="Get Address" onclick="GetAddress()" />
-			<script>
-				var x = document.getElementById("demo");
-				var txtLatitude;
-				var txtLongitude;
-					function getLocation() {
-						if (navigator.geolocation) {
-						navigator.geolocation.getCurrentPosition(showPosition);
-					} else {
-						x.innerHTML = "Geolocation is not supported by this browser.";
-					}
-					}
-				function showPosition(position) {
-				//x.innerHTML = "Latitude: " + position.coords.latitude + 
-				//	"<br>Longitude: " + position.coords.longitude; 
-            txtLatitude = position.coords.latitude;
-            txtLongitude = position.coords.longitude;
-				}
-				
-			function GetAddress() {
-            var lat = txtLatitude;
-            var lng = txtLongitude;
-            var latlng = new google.maps.LatLng(lat, lng);
-            var geocoder = geocoder = new google.maps.Geocoder();
-            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    if (results[1]) {
-                        x.innerHTML = "Location: " + results[0].formatted_address;
-                    }
-                }
-            });
-        }
-				
-			</script>
+    <P> <h3>Location: Lat:40.1117869 Lon:-75.1673672</h3></p>
+    <P> <h3>Street Address: 3141 Chestnut St, Philadelphia, PA 19104</h3></p>
   </body>
-
-        
-           
-
   </br>
   <div>
 <table id="projectSpreadsheet" class="fixed_headers" style="width:auto" >
