@@ -36,7 +36,7 @@
     <span class="input-group-addon">Name Search</span>
     <input type="text" class="form-control">
     <span class="input-group-btn">
-      <button class="btn btn-default" type="button">Submit</button>
+      <form action="{% url 'edit_user_mike' %}"> {%csrf_token%}<input class="btn btn-default" type="submit" value="Submit" /></form>
     </span>
   </div>
 </div>
